@@ -57,9 +57,16 @@ public class Election {
     void rigElection(String candidate){
         if (!candidateMap.containsKey(candidate)) return;
 
+        // Find the current highest vote count
+        int maxVotes = 0;
+        for (Candidate c : maxHeap) {
+            maxVotes = Math.max(maxVotes, c.votes);
+        }
+
+        // Update the selected candidate's votes to be one more than the highest
         Candidate c = candidateMap.get(candidate);
         maxHeap.remove(c);
-        c.votes = Integer.MAX_VALUE; // Ensure this candidate wins
+        c.votes = maxVotes + 1;
         maxHeap.add(c);
     }
 

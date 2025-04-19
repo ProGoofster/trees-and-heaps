@@ -1,37 +1,36 @@
-import java.util.LinkedList;
+import java.util.*;
 
 public class ElectionSystem {
-    //initialize the election system with the list
-    //of candidates given
-    void initializeCandidates(LinkedList<String> candidates) {
 
-    }
+    public static void main(String[] args) {
+        // Create an instance of the Election class
+        Election election = new Election();
 
-    //Simulate a vote for the specified candidate and update the priority
-    //queue
-    void castVote(String candidate) {
+        // Initialize the election with a list of candidates
+        List<String> candidates = Arrays.asList("Marcus Fenix", "Dominic Santiago", "Damon Baird", "Cole Train", "Anya Stroud");
+        election.initializeCandidates(new LinkedList<>(candidates));
 
-    }
+        // Initialize the number of electorate votes to simulate
+        int p = 5;
 
-    //Simulate a vote for a random candidate and update the priority queue.
-    void castRandomVote() {
+        // Simulate casting votes
+        election.castVote("Cole Train");
+        election.castVote("Cole Train");
+        election.castVote("Marcus Fenix");
+        election.castVote("Anya Stroud");
+        election.castVote("Anya Stroud");
 
-    }
+        // Get the top 3 candidates after 5 votes
+        System.out.println("Top 3 candidates after 5 votes: " + election.getTopKCandidates(3));
 
-    //Simulate enough votes for the given candidate to win the
-    //election and update the priority queue. (Note: The total number of votes should be p)
-    void rigElection(String candidate){
+        // Rig the election for "Marcus Fenix"
+        election.rigElection("Marcus Fenix");
 
-    }
+        // Get the top 3 candidates after rigging the election
+        System.out.println("Top 3 candidates after rigging the election: " + election.getTopKCandidates(3));
 
-    //return the top k candidates with the most votes.
-    void getTopKCandidates(int k){
-
-    }
-
-    //Print to console all the candidates and how many votes they got in order from
-    //the candidate with the most votes to the candidate with the least amount of votes.
-    void auditElection(){
-
+        // Audit the election to print all candidates and their votes
+        System.out.println("Audit Election:");
+        election.auditElection();
     }
 }
