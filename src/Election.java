@@ -23,6 +23,8 @@ public class Election {
 
     //initialize the election system with the list
     //of candidates given
+    // O(n log n) time, n for the loop, log n for adding to maxHeap
+    // O(n) space, because the memory grows proportionally with the amount of input
     void initializeCandidates(LinkedList<String> candidates) {
         for (String candidate : candidates) {
             Candidate c = new Candidate(candidate, 0);
@@ -33,6 +35,8 @@ public class Election {
 
     //Simulate a vote for the specified candidate and update the priority
     //queue
+    // o(n) time, remove from maxHeap is o(n) in java,
+    // o(1), no new storage
     void castVote(String candidate) {
         if (!candidateMap.containsKey(candidate)) {
             System.out.println("Candidate not found!");
@@ -45,6 +49,8 @@ public class Election {
     }
 
     //Simulate a vote for a random candidate and update the priority queue.
+    // o(n) time same as cast vote
+    // o(n) space new arraylist
     void castRandomVote() {
         List<String> candidates = new ArrayList<>(candidateMap.keySet());
         if (candidates.isEmpty()) return;
@@ -54,6 +60,8 @@ public class Election {
 
     //Simulate enough votes for the given candidate to win the
     //election and update the priority queue. (Note: The total number of votes should be p)
+    // O(n) time because maxheap remove
+    // O(1) space, amount of memory doesn't grow
     void rigElection(String candidate){
         if (!candidateMap.containsKey(candidate)) return;
 
@@ -71,6 +79,8 @@ public class Election {
     }
 
     //return the top k candidates with the most votes.
+    // O(k log n) time where k is integer k
+    // O(k) space
     List<String> getTopKCandidates(int k){
         List<String> result = new ArrayList<>();
         List<Candidate> temp = new ArrayList<>();
@@ -88,6 +98,8 @@ public class Election {
 
     //Print to console all the candidates and how many votes they got in order from
     //the candidate with the most votes to the candidate with the least amount of votes.
+    // time O(n log n) n for loop, log n for add
+    // space O(n), for the list
     void auditElection(){
         List<Candidate> temp = new ArrayList<>();
         while (!maxHeap.isEmpty()) {
